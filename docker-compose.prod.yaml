@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  apache:
+    environment:
+      APP_KEY: ${APP_KEY}
+      HASURA_BASE_URI: ${HASURA_BASE_URI:-http://hasura:8080}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+
+  hasura:
+    ports:
+      - protocol: tcp
+        target: 8080
+        published: 80

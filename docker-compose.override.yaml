@@ -1,0 +1,75 @@
+version: '3'
+
+services:
+  apache:
+    image: localhost:5000/apache-dev:latest
+    build:
+      args:
+        PHP_EXTENSIONS: 'intl gd pdo_pgsql apcu xdebug'
+    volumes:
+      - $PWD:/var/www/html:rw,cached
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: 1
+      TEMPLATE_PHP_INI: development
+      PHP_INI_OPCACHE__VALIDATE_TIMESTAMPS: 1
+      APACHE_RUN_USER: docker
+      APACHE_RUN_GROUP: docker
+    ports:
+      - protocol: tcp
+        target: 80
+        published: 80
+
+  postgres:
+    ports:
+      - protocol: tcp
+        target: 5432
+        published: 5432
+
+  hasura:
+    environment:
+      HASURA_GRAPHQL_ENABLED_APIS: 'metadata,graphql,pgdump,config'
+      HASURA_GRAPHQL_LOG_LEVEL: 'debug'
+      HASURA_GRAPHQL_DEV_MODE: 'true'
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_ADMIN_INTERNAL_ERRORS: 'true'
+    ports:
+      - protocol: tcp
+        target: 8080
+        published: 8080
+
+  setup:
+    build:
+      dockerfile: ./docker/apache/Dockerfile
+      context: .
+      args:
+        PHP_EXTENSIONS: 'intl gd pdo_pgsql apcu xdebug'
+    command:
+      - /bin/bash
+      - /etc/container/setup.sh
+    volumes:
+      - $PWD:/var/www/html:rw,cached
+      - $PWD/docker/apache/etc/container/setup.sh:/etc/container/setup.sh:ro
+    depends_on:
+      - postgres
+      - apache
+      - hasura
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: true
+      DB_DATABASE: ${POSTGRES_DB:-app}
+      DB_USERNAME: ${POSTGRES_USER:-postgres}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      HASURA_ADMIN_SECRET: ${HASURA_ADMIN_SECRET:-1234}
+      APP_HASURA_SECRET: ${APP_HASURA_SECRET:-!ChangeMe!}
+      TEMPLATE_PHP_INI: development
+      PHP_INI_OPCACHE__VALIDATE_TIMESTAMPS: 1
+      APACHE_RUN_USER: docker
+      APACHE_RUN_GROUP: docker
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - protocol: tcp
+        target: 8025
+        published: 8025
