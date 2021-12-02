@@ -16,13 +16,18 @@ return [
     /*
      * Application remote schema name had added on Hasura.
      */
-    'remote_schema_name' => null,
+    'remote_schema_name' => 'local',
     'auth' => [
         /*
          * When set to true, the method for checking roles will be registered on the gate.
          * Set this to false, if you want to implement custom logic for checking roles.
          */
         'enabled_role_check_method' => true,
+        /*
+         * An array names of auth guards or `null` used to get current user for authenticate request,
+         * Default `null` mean with use `auth.defaults.guard` config.
+         */
+        'guard' => null,
         /*
          * Defines inherited roles will use authorize checking and persist to Hasura inherited roles.
          */
@@ -38,7 +43,9 @@ return [
         /*
          * Set of enhancers implements \Hasura\AuthHook\SessionVariableEnhancerInterface support to enhance session variables of request.
          */
-        'session_variable_enhancers' => []
+        'session_variable_enhancers' => [
+            \App\Http\Hasura\SessionVariableEnhancer::class
+        ]
     ],
     'metadata' => [
         /*
@@ -53,8 +60,7 @@ return [
              * Hasura Extra processors should be run first.
              */
             \Hasura\Metadata\ReloadStateProcessor::class,
-            // If you want to add the remote schema permission state processor below, please make sure you had config `remote_schema_name`.
-            // \Hasura\GraphQLiteBridge\RemoteSchemaPermissionStateProcessor::class,
+            \Hasura\GraphQLiteBridge\RemoteSchemaPermissionStateProcessor::class,
             \Hasura\Metadata\InheritedRolesStateProcessor::class,
         ]
     ],
@@ -87,7 +93,7 @@ return [
              */
             'uri' => '/hasura-auth-hook',
             /*
-             * Set of route middleware.
+             * Set of route middleware, please not use `auth` middleware because this route will handle both user and anonymous requests.
              */
             'middleware' => []
         ],
@@ -101,7 +107,8 @@ return [
              */
             'uri' => '/hasura-table-event',
             /*
-             * Set of route middleware.
+             * Set of route middleware,
+             * `hasura` guard will be use basic auth with fixed user `hasura` and password's `app_secret` config value above.
              */
             'middleware' => ['auth:hasura']
         ]
