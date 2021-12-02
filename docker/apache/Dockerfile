@@ -5,7 +5,7 @@ ARG PHP_EXTENSIONS="intl gd pdo_pgsql apcu"
 FROM thecodingmachine/php:${PHP_VERSION}-v4-slim-apache
 
 # production settings
-ENV APP_ENV=prod
+ENV APP_ENV=production
 ENV APP_DEBUG=false
 
 # https://github.com/thecodingmachine/docker-images-php
@@ -28,7 +28,6 @@ ENV PHP_INI_REALPATH_CACHE_SIZE="4096K"
 ENV PHP_INI_REALPATH_CACHE_TTL=600
 
 # copies application files
-COPY .env ./
 COPY app app/
 COPY bootstrap/app.php bootstrap/app.php
 COPY config config/
@@ -49,10 +48,7 @@ RUN set -e; \
 RUN set -eux; \
     # install dependencies with lock
     composer install --prefer-dist --no-dev --no-scripts --no-progress; \
-	composer dump-autoload --classmap-authoritative --no-dev; \
-    php artisan optimize;
-
-VOLUME /var/www/html/var
+	composer dump-autoload --classmap-authoritative --no-dev;
 
 # Apache conf: https://github.com/symfony/recipes-contrib/blob/master/symfony/apache-pack/1.0/public/.htaccess
 COPY docker/apache/etc/apache2/conf-available/docker-php.conf /etc/apache2/conf-available/docker-php.conf
