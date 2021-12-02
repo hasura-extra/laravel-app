@@ -2,7 +2,7 @@ version: '3'
 
 services:
   apache:
-    image: localhost:5000/apache-prod:latest
+    image: localhost:5000/apache-production:latest
     build:
       dockerfile: ./docker/apache/Dockerfile
       context: .
@@ -36,7 +36,7 @@ services:
       APP_HASURA_BASIC_AUTH: "Basic ${APP_HASURA_BASIC_AUTH:-aGFzdXJhOiFDaGFuZ2VNZSE=}"
       # https://hasura.io/docs/latest/graphql/core/deployment/graphql-engine-flags/reference.html
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_ADMIN_SECRET:-1234}
-      HASURA_GRAPHQL_AUTH_HOOK: 'http://apache/hasura_auth_hook'
+      HASURA_GRAPHQL_AUTH_HOOK: 'http://apache/hasura-auth-hook'
       HASURA_GRAPHQL_DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-!ChangeMe!}@postgres/${POSTGRES_DB:-app}
       HASURA_GRAPHQL_EXPERIMENTAL_FEATURES: 'inherited_roles'
       HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS: 'true'

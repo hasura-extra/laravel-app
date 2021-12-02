@@ -2,15 +2,15 @@ version: '3'
 
 services:
   apache:
-    image: localhost:5000/apache-dev:latest
+    image: localhost:5000/apache-local:latest
     build:
       args:
         PHP_EXTENSIONS: 'intl gd pdo_pgsql apcu xdebug'
     volumes:
       - $PWD:/var/www/html:rw,cached
     environment:
-      APP_ENV: dev
-      APP_DEBUG: 1
+      APP_ENV: local
+      APP_DEBUG: 'true'
       TEMPLATE_PHP_INI: development
       PHP_INI_OPCACHE__VALIDATE_TIMESTAMPS: 1
       APACHE_RUN_USER: docker
@@ -55,8 +55,8 @@ services:
       - apache
       - hasura
     environment:
-      APP_ENV: dev
-      APP_DEBUG: true
+      APP_ENV: local
+      APP_DEBUG: 'true'
       DB_DATABASE: ${POSTGRES_DB:-app}
       DB_USERNAME: ${POSTGRES_USER:-postgres}
       DB_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
