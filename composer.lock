@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4675a2d3fd036bb02c1985a0eb74c491",
+    "content-hash": "f4352239395d9611262f6050ab4f60c9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1269,12 +1269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hasura-extra/graphqlite-bridge.git",
-                "reference": "76caef495b1bfcac9f638762fd2bbbd9bc81e6ea"
+                "reference": "0b4ed65c8030fe51694fcf76df5f44b6232f94e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hasura-extra/graphqlite-bridge/zipball/76caef495b1bfcac9f638762fd2bbbd9bc81e6ea",
-                "reference": "76caef495b1bfcac9f638762fd2bbbd9bc81e6ea",
+                "url": "https://api.github.com/repos/hasura-extra/graphqlite-bridge/zipball/0b4ed65c8030fe51694fcf76df5f44b6232f94e5",
+                "reference": "0b4ed65c8030fe51694fcf76df5f44b6232f94e5",
                 "shasum": ""
             },
             "require": {
@@ -1313,7 +1313,7 @@
             "support": {
                 "source": "https://github.com/hasura-extra/graphqlite-bridge/tree/main"
             },
-            "time": "2021-11-28T01:14:23+00:00"
+            "time": "2021-12-02T08:57:19+00:00"
         },
         {
             "name": "hasura-extra/laravel",
@@ -1321,12 +1321,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hasura-extra/laravel.git",
-                "reference": "f5422e4bdb15390027b5970e96737965b43af424"
+                "reference": "7066dd7781c4b4a48dfec68e87eeeca9ab079bc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hasura-extra/laravel/zipball/f5422e4bdb15390027b5970e96737965b43af424",
-                "reference": "f5422e4bdb15390027b5970e96737965b43af424",
+                "url": "https://api.github.com/repos/hasura-extra/laravel/zipball/7066dd7781c4b4a48dfec68e87eeeca9ab079bc1",
+                "reference": "7066dd7781c4b4a48dfec68e87eeeca9ab079bc1",
                 "shasum": ""
             },
             "require": {
@@ -1372,7 +1372,7 @@
             "support": {
                 "source": "https://github.com/hasura-extra/laravel/tree/main"
             },
-            "time": "2021-12-01T10:02:29+00:00"
+            "time": "2021-12-02T06:32:12+00:00"
         },
         {
             "name": "hasura-extra/metadata",
@@ -1380,12 +1380,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hasura-extra/metadata.git",
-                "reference": "ee395c2c10c0c2e415cf7df0cf1331785871dc13"
+                "reference": "6a2ac79bb8874750228efffb01979585d2f190d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hasura-extra/metadata/zipball/ee395c2c10c0c2e415cf7df0cf1331785871dc13",
-                "reference": "ee395c2c10c0c2e415cf7df0cf1331785871dc13",
+                "url": "https://api.github.com/repos/hasura-extra/metadata/zipball/6a2ac79bb8874750228efffb01979585d2f190d6",
+                "reference": "6a2ac79bb8874750228efffb01979585d2f190d6",
                 "shasum": ""
             },
             "require": {
@@ -1430,7 +1430,7 @@
             "support": {
                 "source": "https://github.com/hasura-extra/metadata/tree/main"
             },
-            "time": "2021-11-28T01:14:20+00:00"
+            "time": "2021-12-02T10:29:12+00:00"
         },
         {
             "name": "hasura-extra/sailor-bridge",
@@ -10273,7 +10273,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": ">=8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
