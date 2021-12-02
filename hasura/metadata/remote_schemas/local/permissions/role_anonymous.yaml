@@ -1,0 +1,22 @@
+role: anonymous
+definition:
+    schema: |-
+        schema  { query: Query mutation: Mutation }
+
+        type Mutation { login(email: String!, password: String!, device: String!): login_output!
+          registration(input: registration_input!): registration_output
+        }
+
+        type Query { _dummy: String!
+        }
+
+        type login_output { token: String!
+        }
+
+        type registration_output { id: Int!
+        }
+
+        input registration_input {email: String!
+          name: String!
+          password: String!
+        }

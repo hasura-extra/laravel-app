@@ -1,0 +1,17 @@
+table:
+    schema: public
+    name: users
+select_permissions:
+    -
+        role: user
+        permission:
+            columns:
+                - created_at
+                - email
+                - email_verified_at
+                - id
+                - name
+                - updated_at
+            filter:
+                id:
+                    _eq: X-Hasura-User-Id

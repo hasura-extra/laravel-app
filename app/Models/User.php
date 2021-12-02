@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /*
+     * List roles of user
+     */
+    public function getRoles(): array
+    {
+        return ['user'];
+    }
 }
