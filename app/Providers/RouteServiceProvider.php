@@ -46,6 +46,11 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            /*
+             * Health check endpoint use in Docker healthcheck & Kubernetes readiness, liveness probe.
+             */
+            Route::get('/healthz', fn() => 'OK');
         });
     }
 
