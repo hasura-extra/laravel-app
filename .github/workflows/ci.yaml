@@ -16,7 +16,7 @@ jobs:
 
       - run: docker-compose up -d
 
-      - run: docker-compose run --rm apache vendor/bin/phpunit
+      - run: docker-compose run --rm apache php artisan test
 
       - run: |
           curl -sSf http://localhost/healthz | grep -q "OK" # Apache health check
