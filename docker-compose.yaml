@@ -35,12 +35,12 @@ services:
       # base64_encode('hasura:!ChangeMe!');
       APP_HASURA_BASIC_AUTH: "Basic ${APP_HASURA_BASIC_AUTH:-aGFzdXJhOiFDaGFuZ2VNZSE=}"
       # https://hasura.io/docs/latest/graphql/core/deployment/graphql-engine-flags/reference.html
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_ADMIN_SECRET:-1234}
       HASURA_GRAPHQL_AUTH_HOOK: 'http://apache/hasura-auth-hook'
       HASURA_GRAPHQL_DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-!ChangeMe!}@postgres/${POSTGRES_DB:-app}
       HASURA_GRAPHQL_EXPERIMENTAL_FEATURES: 'inherited_roles'
       HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS: 'true'
-      HASURA_GRAPHQL_ENABLE_CONSOLE: 'false'
       HASURA_GRAPHQL_LOG_LEVEL: 'warn'
       HASURA_GRAPHQL_ENABLED_APIS: 'metadata, graphql'
     depends_on:

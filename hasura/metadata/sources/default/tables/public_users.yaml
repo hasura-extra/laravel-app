@@ -15,3 +15,19 @@ select_permissions:
             filter:
                 id:
                     _eq: X-Hasura-User-Id
+event_triggers:
+    -
+        name: user_registered
+        definition:
+            enable_manual: false
+            insert:
+                columns: '*'
+        retry_conf:
+            num_retries: 3
+            interval_sec: 10
+            timeout_sec: 60
+        webhook: '{{APP_BASE_URI}}/hasura-table-event'
+        headers:
+            -
+                name: Authorization
+                value_from_env: APP_HASURA_BASIC_AUTH
