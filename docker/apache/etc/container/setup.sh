@@ -7,12 +7,16 @@ sudo chmod +x ./artisan
 rm -f bootstrap/cache/*.php
 
 composer install --prefer-dist --no-progress --no-interaction
-composer run-script post-root-package-install
+
+# Initial project
+if [ ! -f ".env" ]; then
+    composer run-script post-root-package-install
+    composer run-script post-create-project-cmd
+fi
 
 if ls -A database/migrations/*.php >/dev/null 2>&1; then
   echo "Migrating & seeding database..."
-  php artisan migrate --no-interaction
-  php artisan db:seed
+  php artisan migrate --seed --no-interaction
 fi
 
 if ls -A hasura/metadata/*.yaml >/dev/null 2>&1; then
