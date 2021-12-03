@@ -5,8 +5,8 @@ ARG PHP_EXTENSIONS="intl gd pdo_pgsql apcu"
 FROM thecodingmachine/php:${PHP_VERSION}-v4-slim-apache
 
 # production settings
-ENV APP_ENV=production
-ENV APP_DEBUG=false
+ENV APP_ENV="production"
+ENV APP_DEBUG="false"
 
 # https://github.com/thecodingmachine/docker-images-php
 ENV TEMPLATE_PHP_INI="production"
@@ -36,13 +36,13 @@ COPY hasura hasura/
 COPY public public/
 COPY resources resources/
 COPY routes routes/
-COPY storage storage/
+COPY storage/app storage/app
 COPY tests tests/
 COPY artisan composer.json composer.lock ./
 
 RUN set -e; \
-    sudo mkdir -p bootstrap/cache; \
-    sudo chmod 777 -R storage bootstrap/cache; \
+    sudo mkdir -p bootstrap/cache storage/framework storage/logs; \
+    sudo chmod 777 -R storage bootstrap/cache storage/framework storage/logs; \
     sudo chmod +x ./artisan; sync
 
 RUN set -eux; \
