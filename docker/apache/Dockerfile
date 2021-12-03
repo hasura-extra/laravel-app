@@ -41,8 +41,14 @@ COPY tests tests/
 COPY artisan composer.json composer.lock ./
 
 RUN set -e; \
-    sudo mkdir -p bootstrap/cache storage/framework storage/logs; \
-    sudo chmod 777 -R storage bootstrap/cache storage/framework storage/logs; \
+    sudo mkdir -p \
+    bootstrap/cache \
+    storage/framework/cache/data \
+    storage/framework/sessions \
+    storage/framework/testing \
+    storage/framework/views \
+    storage/logs; \
+    sudo chmod 777 -R bootstrap/cache storage/framework storage/logs; \
     sudo chmod +x ./artisan; sync
 
 RUN set -eux; \
