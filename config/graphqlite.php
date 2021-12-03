@@ -18,7 +18,7 @@ return [
      */
     'controllers' => 'App\\Http\\GraphQL',
     'types' => 'App\\Http\\GraphQL',
-    'debug' => env('APP_ENV') === 'prod' ? DebugFlag::RETHROW_UNSAFE_EXCEPTIONS : DebugFlag::INCLUDE_DEBUG_MESSAGE | DebugFlag::INCLUDE_TRACE,
+    'debug' => env('APP_ENV') === 'production' ? DebugFlag::RETHROW_UNSAFE_EXCEPTIONS : DebugFlag::INCLUDE_DEBUG_MESSAGE | DebugFlag::INCLUDE_TRACE,
     'uri' => '/graphql',
     'middleware' =>  [],
 ];
