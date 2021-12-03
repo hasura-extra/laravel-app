@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# optimize config (caching routes and config).
-if [[ -f "vendor/autoload.php" ]]; then
+# optimize config (caching routes and config on production env).
+if [[ ${APP_ENV:-local} = "production" ]]; then
     php artisan optimize
 fi
 
