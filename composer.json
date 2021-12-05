@@ -5,7 +5,7 @@
         "php": ">=8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "hasura-extra/laravel": "2.1.x-dev",
+        "hasura-extra/laravel": "^2.1",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5"
