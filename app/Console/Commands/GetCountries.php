@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\GraphQLExecutors\Countries;
+use App\GraphQLExecutors\Operations\Countries;
 use Illuminate\Console\Command;
 
 class GetCountries extends Command
@@ -46,7 +46,7 @@ class GetCountries extends Command
         $this->table(
             ['Name', 'Capital', 'Currency'],
             array_map(
-                fn(Countries\Countries\Countries $item) => [
+                fn(Countries\Countries\Country $item) => [
                     $item->name,
                     $item->capital,
                     $item->currency
