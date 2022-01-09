@@ -33,17 +33,17 @@ class users_bool_exp extends \Spawnia\Sailor\ObjectLike
      * @param \App\GraphQLExecutors\Types\timestamp_comparison_exp|null $updated_at
      */
     public static function make(
-        $_and = 1.7976931348623157E+308,
-        $_not = 1.7976931348623157E+308,
-        $_or = 1.7976931348623157E+308,
-        $created_at = 1.7976931348623157E+308,
-        $email = 1.7976931348623157E+308,
-        $email_verified_at = 1.7976931348623157E+308,
-        $id = 1.7976931348623157E+308,
-        $name = 1.7976931348623157E+308,
-        $password = 1.7976931348623157E+308,
-        $remember_token = 1.7976931348623157E+308,
-        $updated_at = 1.7976931348623157E+308
+        $_and = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_not = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_or = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $created_at = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $email = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $email_verified_at = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $id = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $name = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $password = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $remember_token = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $updated_at = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.'
     ): self {
         $instance = new self;
 
@@ -101,5 +101,10 @@ class users_bool_exp extends \Spawnia\Sailor\ObjectLike
             'remember_token' => new \Spawnia\Sailor\Convert\NullConverter(new \App\GraphQLExecutors\Types\String_comparison_exp),
             'updated_at' => new \Spawnia\Sailor\Convert\NullConverter(new \App\GraphQLExecutors\Types\timestamp_comparison_exp),
         ];
+    }
+
+    public static function endpoint(): string
+    {
+        return 'hasura';
     }
 }

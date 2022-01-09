@@ -104,11 +104,11 @@ class TypeConverters
         return $converter ??= new \App\GraphQLExecutors\Types\timestamp_comparison_exp();
     }
 
-    public static function timestamp(): \Spawnia\Sailor\Convert\ScalarConverter
+    public static function timestamp(): \Hasura\SailorBridge\Convert\TimestampTypeConverter
     {
         static $converter;
 
-        return $converter ??= new \Spawnia\Sailor\Convert\ScalarConverter();
+        return $converter ??= new \Hasura\SailorBridge\Convert\TimestampTypeConverter();
     }
 
     public static function String_comparison_exp(): Types\String_comparison_exp
@@ -221,6 +221,13 @@ class TypeConverters
         static $converter;
 
         return $converter ??= new \Hasura\SailorBridge\Convert\DateTypeConverter();
+    }
+
+    public static function time(): \Hasura\SailorBridge\Convert\TimeTypeConverter
+    {
+        static $converter;
+
+        return $converter ??= new \Hasura\SailorBridge\Convert\TimeTypeConverter();
     }
 
     public static function timetz(): \Hasura\SailorBridge\Convert\TimetzTypeConverter

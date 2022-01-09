@@ -5,39 +5,39 @@ declare(strict_types=1);
 namespace App\GraphQLExecutors\Types;
 
 /**
- * @property string|null $_eq
- * @property string|null $_gt
- * @property string|null $_gte
- * @property array<int, string>|null $_in
+ * @property DateTimeInterface|null $_eq
+ * @property DateTimeInterface|null $_gt
+ * @property DateTimeInterface|null $_gte
+ * @property array<int, DateTimeInterface>|null $_in
  * @property bool|null $_is_null
- * @property string|null $_lt
- * @property string|null $_lte
- * @property string|null $_neq
- * @property array<int, string>|null $_nin
+ * @property DateTimeInterface|null $_lt
+ * @property DateTimeInterface|null $_lte
+ * @property DateTimeInterface|null $_neq
+ * @property array<int, DateTimeInterface>|null $_nin
  */
 class timestamp_comparison_exp extends \Spawnia\Sailor\ObjectLike
 {
     /**
-     * @param string|null $_eq
-     * @param string|null $_gt
-     * @param string|null $_gte
-     * @param array<int, string>|null $_in
+     * @param DateTimeInterface|null $_eq
+     * @param DateTimeInterface|null $_gt
+     * @param DateTimeInterface|null $_gte
+     * @param array<int, DateTimeInterface>|null $_in
      * @param bool|null $_is_null
-     * @param string|null $_lt
-     * @param string|null $_lte
-     * @param string|null $_neq
-     * @param array<int, string>|null $_nin
+     * @param DateTimeInterface|null $_lt
+     * @param DateTimeInterface|null $_lte
+     * @param DateTimeInterface|null $_neq
+     * @param array<int, DateTimeInterface>|null $_nin
      */
     public static function make(
-        $_eq = 1.7976931348623157E+308,
-        $_gt = 1.7976931348623157E+308,
-        $_gte = 1.7976931348623157E+308,
-        $_in = 1.7976931348623157E+308,
-        $_is_null = 1.7976931348623157E+308,
-        $_lt = 1.7976931348623157E+308,
-        $_lte = 1.7976931348623157E+308,
-        $_neq = 1.7976931348623157E+308,
-        $_nin = 1.7976931348623157E+308
+        $_eq = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_gt = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_gte = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_in = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_is_null = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_lt = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_lte = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_neq = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $_nin = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.'
     ): self {
         $instance = new self;
 
@@ -77,15 +77,20 @@ class timestamp_comparison_exp extends \Spawnia\Sailor\ObjectLike
         static $converters;
 
         return $converters ??= [
-            '_eq' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ScalarConverter),
-            '_gt' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ScalarConverter),
-            '_gte' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ScalarConverter),
-            '_in' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ListConverter(new \Spawnia\Sailor\Convert\NonNullConverter(new \Spawnia\Sailor\Convert\ScalarConverter))),
+            '_eq' => new \Spawnia\Sailor\Convert\NullConverter(new \Hasura\SailorBridge\Convert\TimestampTypeConverter),
+            '_gt' => new \Spawnia\Sailor\Convert\NullConverter(new \Hasura\SailorBridge\Convert\TimestampTypeConverter),
+            '_gte' => new \Spawnia\Sailor\Convert\NullConverter(new \Hasura\SailorBridge\Convert\TimestampTypeConverter),
+            '_in' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ListConverter(new \Spawnia\Sailor\Convert\NonNullConverter(new \Hasura\SailorBridge\Convert\TimestampTypeConverter))),
             '_is_null' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\BooleanConverter),
-            '_lt' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ScalarConverter),
-            '_lte' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ScalarConverter),
-            '_neq' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ScalarConverter),
-            '_nin' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ListConverter(new \Spawnia\Sailor\Convert\NonNullConverter(new \Spawnia\Sailor\Convert\ScalarConverter))),
+            '_lt' => new \Spawnia\Sailor\Convert\NullConverter(new \Hasura\SailorBridge\Convert\TimestampTypeConverter),
+            '_lte' => new \Spawnia\Sailor\Convert\NullConverter(new \Hasura\SailorBridge\Convert\TimestampTypeConverter),
+            '_neq' => new \Spawnia\Sailor\Convert\NullConverter(new \Hasura\SailorBridge\Convert\TimestampTypeConverter),
+            '_nin' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\ListConverter(new \Spawnia\Sailor\Convert\NonNullConverter(new \Hasura\SailorBridge\Convert\TimestampTypeConverter))),
         ];
+    }
+
+    public static function endpoint(): string
+    {
+        return 'hasura';
     }
 }
