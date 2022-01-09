@@ -27,14 +27,14 @@ class users_order_by extends \Spawnia\Sailor\ObjectLike
      * @param string|null $updated_at
      */
     public static function make(
-        $created_at = 1.7976931348623157E+308,
-        $email = 1.7976931348623157E+308,
-        $email_verified_at = 1.7976931348623157E+308,
-        $id = 1.7976931348623157E+308,
-        $name = 1.7976931348623157E+308,
-        $password = 1.7976931348623157E+308,
-        $remember_token = 1.7976931348623157E+308,
-        $updated_at = 1.7976931348623157E+308
+        $created_at = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $email = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $email_verified_at = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $id = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $name = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $password = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $remember_token = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.',
+        $updated_at = 'Special default value that allows Sailor to differentiate between explicitly passing null and not passing a value at all.'
     ): self {
         $instance = new self;
 
@@ -80,5 +80,10 @@ class users_order_by extends \Spawnia\Sailor\ObjectLike
             'remember_token' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\EnumConverter),
             'updated_at' => new \Spawnia\Sailor\Convert\NullConverter(new \Spawnia\Sailor\Convert\EnumConverter),
         ];
+    }
+
+    public static function endpoint(): string
+    {
+        return 'hasura';
     }
 }
